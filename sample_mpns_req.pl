@@ -14,7 +14,7 @@ use HTTP::Headers;
 
 
 sub SendNotification {
-        my ($urlSending,$textForSend,$count,$delay,$messageId,$target) = @_;
+  my ($urlSending,$textForSend,$count,$delay,$messageId,$target) = @_;
 
 		#Make Headers 
 		my $apiHeader = SetUpHeaders($delay,$messageId,$target);
@@ -36,19 +36,19 @@ sub SendNotification {
 }
 
 sub GetApiRequest {
-    my ($count,$title) = @_;
-	my $apiRequest ="<?xml version=\"1.0\" encoding=\"utf-8\"?>" .
+  my ($count,$title) = @_;
+  my $apiRequest ="<?xml version=\"1.0\" encoding=\"utf-8\"?>" .
 				"<wp:Notification xmlns:wp=\"WPNotification\">" .
 					"<wp:Tile>" .
 						"<wp:Count>$count</wp:Count>" .
 						"<wp:Title>".$title."</wp:Title>" .
 					"</wp:Tile>" .
 				"</wp:Notification>";
-	return $apiRequest;
+  return $apiRequest;
 }			  
 
 sub SetUpHeaders {
-    my ($delay,$messageId,$target) = @_;
+  my ($delay,$messageId,$target) = @_;
 	my $apiHeader = HTTP::Headers->new;
 	$apiHeader->push_header('Content-Type' => 'application/xml');
 	$apiHeader->push_header('Accept' => 'application/*');
