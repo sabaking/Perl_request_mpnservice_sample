@@ -14,15 +14,15 @@ use HTTP::Headers;
 
 
 sub SendNotification {
-  my ($urlSending,$textForSend,$count,$delay,$messageId,$target) = @_;
+  my ($urlSending, $textForSend, $count ,$delay, $messageId, $target) = @_;
 
 		#Make Headers 
-		my $apiHeader = SetUpHeaders($delay,$messageId,$target);
+		my $apiHeader = SetUpHeaders($delay, $messageId, $target);
 		
 		#Make  xml for req.
-		my $apiRequest = GetApiRequest($count,$textForSend);
+		my $apiRequest = GetApiRequest($count, $textForSend);
 		#POST
-		my $apiPostRequest = HTTP::Request->new("POST",$urlSending,$apiHeader,$apiRequest);
+		my $apiPostRequest = HTTP::Request->new("POST", $urlSending, $apiHeader, $apiRequest);
  
 		my $apiUserAgent = LWP::UserAgent->new;
 		my $apiResponse = $apiUserAgent->request($apiPostRequest);
@@ -48,7 +48,7 @@ sub GetApiRequest {
 }			  
 
 sub SetUpHeaders {
-  my ($delay,$messageId,$target) = @_;
+  my ($delay, $messageId ,$target) = @_;
 	my $apiHeader = HTTP::Headers->new;
 	$apiHeader->push_header('Content-Type' => 'application/xml');
 	$apiHeader->push_header('Accept' => 'application/*');
